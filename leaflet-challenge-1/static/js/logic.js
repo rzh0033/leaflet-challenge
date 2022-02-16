@@ -19,19 +19,19 @@ function createFeatures(earthquakeData) {
       onEachFeature: onEachFeature,
       pointToLayer: function(feature, latlng) {
         let radius = feature.properties.mag * 5;
-        if (feature.geometry.coordinate[2] > 90) {
+        if (feature.geometry.coordinates[2] > 90) {
             fillcolor = '#a6f6b9';
         }
-        else if (featiure.geometry.coordinates[2] >= 70) {
+        else if (feature.geometry.coordinates[2] >= 70) {
             fillcolor = '#a6f6da';
         }
-        else if (featiure.geometry.coordinates[2] >= 50) {
+        else if (feature.geometry.coordinates[2] >= 50) {
             fillcolor = '#ff9400';
         }
-        else if (featiure.geometry.coordinates[2] >= 30) {
+        else if (feature.geometry.coordinates[2] >= 30) {
             fillcolor = '#a6b3f6';
         }
-        else if (featiure.geometry.coordinates[2] >= 10) {
+        else if (feature.geometry.coordinates[2] >= 10) {
             fillcolor = '#f6a6eb';
         }
         else fillcolor = '#f6a6a6';
@@ -39,7 +39,7 @@ function createFeatures(earthquakeData) {
         return L.circleMarker(latlng, {
             radius: radius,
             color: 'black',
-            fillColor: fillColor,
+            fillColor: fillcolor,
             fillOpacity: 1,
             weight: 1
         });
@@ -106,7 +106,8 @@ function createMap(earthquakes) {
       ];
 
       for(let i = 0; i < grades.length; i++) {
-          div.innerHTML += "<i style = background: " + colors[i] + "'></i> " + grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "</br>" : "+");
+          div.innerHTML += "<i style= 'background: " + colors[i] + "'></i> " +
+          grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "</br>" : "+");
       }
       return div;
   };
